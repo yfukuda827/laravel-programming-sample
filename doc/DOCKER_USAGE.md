@@ -15,7 +15,6 @@ laravel/.env.docker に上書きします。
 > cd THIS_REPOSITORY_DIR
 > rm laravel/.env
 > docker-compose up -d --build
-> docker exec -it sample-laravel /mnt/.docker/laravel/clrcache.sh
 > docker exec -it sample-laravel /mnt/.docker/laravel/firstexec.sh
 ```
 
