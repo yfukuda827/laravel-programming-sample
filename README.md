@@ -10,8 +10,6 @@
 
 - [http://localhost:8000/](http://localhost:8000/) Web
   - テストアカウント test@redoit.tech / password
-- [http://localhost:8000/admin-login-view](http://localhost:8000/admin/login) 管理画面
-  - 管理者アカウント admin / password
 - [http://localhost:8880/](http://localhost:8880/) phpMyAdmin
 - [http://localhost:8025/](http://localhost:8025/) MailHog
 

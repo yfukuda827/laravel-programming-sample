@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\ProductCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->longText('description')->comment('商品説明');
             $table->unsignedInteger('price')->default(0)->comment('価格');
             $table->unsignedInteger('stock')->default(0)->comment('在庫数');
-            $table->foreignIdFor(ProductCategory::class)->nullable()->comment('カテゴリ');
+            $table->foreignId('product_category_id')->constrained()->nullable()->comment('カテゴリ');
             $table->timestamps();
         });
     }

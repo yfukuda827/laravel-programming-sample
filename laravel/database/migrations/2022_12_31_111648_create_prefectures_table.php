@@ -18,6 +18,7 @@ class CreatePrefecturesTable extends Migration
             $table->string('name')->comment('都道府県名');
             $table->unsignedInteger('shipping_charge')->comment('配送料');
             $table->timestamps();
+            $table->primary('id');
         });
     }
 
