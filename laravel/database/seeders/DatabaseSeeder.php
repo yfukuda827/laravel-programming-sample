@@ -13,6 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // 本番環境でも実行
+        $this->call(PrefectureSeeder::class);
+
+        if (config("app.env") !== "production") {
+            // 本番環境以外で実行
+            $this->call(UserSeeder::class);
+            $this->call(ProfileSeeder::class);
+            $this->call(ProductCategorySeeder::class);
+            $this->call(ProductSeeder::class);
+            $this->call(OrderSeeder::class);
+        }
     }
 }

@@ -81,6 +81,17 @@ $ exit
 $ php artisan test
 ```
 
+## キャッシュクリア
+
+Laravel にはたくさんの保存項目があり、たまに全部をクリアしたい時があります。  
+全部をクリアするシェルを実行してください  
+
+```sh
+> cd THIS_REPOSITORY_DIR
+> docker-compose up -d
+> docker exec -it sample-laravel /mnt/.docker/laravel/clrcache.sh
+```
+
 ## .env ファイルの更新
 
 .envファイルを更新した際には
