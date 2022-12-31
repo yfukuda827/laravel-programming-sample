@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\TraceLog;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware([TraceLog::class])->group(function() {
+    Route::get('/', function () {
+        User::first();
+        return view('welcome');
+    });
 });
