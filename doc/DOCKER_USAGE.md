@@ -7,10 +7,6 @@ docker と docker-compose が必要です。
 
 ## 初回起動
 
-1password の "docker 用 .env ファイル" から .env をダウンロードします。
-ダウンロードした .env を .env.docker に名前を変更後、
-laravel/.env.docker に上書きします。
-
 ```sh
 > cd THIS_REPOSITORY_DIR
 > rm laravel/.env
@@ -86,16 +82,12 @@ $ php artisan test
 ```
 
 ## .env ファイルの更新
-docker用.envファイルにも機密事項が入っているため、1passwordでの管理になります。
-.envファイル更新のアナウンスがあったときの作業です。
-
-1password の "docker 用 .env ファイル" から .env をダウンロードします。
-ダウンロードした .env を laravel/.env に上書きします。
 
 .envファイルを更新した際には
+
 ```sh
 > cd THIS_REPOSITORY_DIR
 > docker exec -it sample-laravel /mnt/.docker/laravel/clrcache.sh
 ```
-を実行します。
 
+を実行します。
