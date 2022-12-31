@@ -1,0 +1,58 @@
+version: "3"
+volumes:
+    laravel-nodes:
+    laravel-vendor:
+
+services:
+  laravel:
+    container_name: sample-laravel
+    hostname: 'sample-laravel'
+    build:
+      context: ./.docker/laravel/
+      dockerfile: Dockerfile
+    depends_on:
+      db: 
+        condition: service_started        
+    ports:
+      - 8000:80
+    privileged: true
+    volumes:
+      - .:/mnt:delegated
+      - ./laravel:/var/www/html:delegated
+      - laravel-nodes:/var/www/html/node_modules
+      - laravel-vendor:/var/www/html/vendor
+      - ./.docker/laravel/php.ini:/usr/local/etc/php/php.ini
+ 
+  db:
+    image: mysql:5.7
+    container_name: sample-mysqld
+    hostname: 'sample-mysqld'
+    volumes:
+      - .:/mnt
+      - ./.docker/mysqld/data:/var/lib/mysqld
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
+  
+  mailhog:
+    image: mailhog/mailhog
+    container_name: sample-maild
+    hostname: 'sample-maild'
+    ports:
+      - "8025:8025"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=sample-mysqld
+      - PMA_USER=docker
+      - PMA_PASSWORD=docker
+    ports:
+      - 8880:80

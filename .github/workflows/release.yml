@@ -1,0 +1,31 @@
+name: CI/CD for rel
+
+on:
+  push:
+    tags: [ rel** ]
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Initialize remote access
+      env:
+        RELEASE_SERVER_KEYSTR:  ${{ secrets.PRD0_SERVER_KEYSTR }}
+      run: |
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        echo "${RELEASE_SERVER_KEYSTR}" >> ~/.ssh/id_ecdsa
+        chmod 600 ~/.ssh/id_ecdsa
+    
+    - name: Release to PRD0
+      env:
+        REMOTE_ADDR: 'prd0.sample.com'
+        REMOTE_SSHP: 22
+        REMOTE_USER: 'ec2-user'
+      run: |
+        ssh -o 'StrictHostKeyChecking no' -p ${REMOTE_SSHP} -l ${REMOTE_USER} ${REMOTE_ADDR} "~/deploy.sh"
+

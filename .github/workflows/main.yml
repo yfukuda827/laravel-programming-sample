@@ -1,0 +1,101 @@
+name: CI/CD for main
+
+on:
+  workflow_dispatch:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: nanasess/setup-php@master
+      with:
+          php-version: '8.0'
+
+    - uses: actions/checkout@v2
+    
+    - name: check environment
+      run: |
+        php --version
+        cd ./laravel
+        pwd
+        ls -l
+        which composer
+    
+    - name: Copy .env
+      run: |
+        cd ./laravel
+        php -r "file_exists('.env') || copy('.env.ga', '.env');"
+    
+    - name: Install Dependencies
+      run: |
+        cd ./laravel
+        composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    
+    - name: Generate key
+      run: |
+        cd ./laravel
+        php artisan key:generate
+    
+    - name: Directory Permissions
+      run: |
+        cd ./laravel
+        chmod -R 777 storage bootstrap/cache
+    
+    - name: Setup Database
+      # MySQL の起動とデータベースの作成
+      run: |
+        sudo systemctl start mysql.service
+        mysql -uroot -h127.0.0.1 -proot -e 'CREATE DATABASE IF NOT EXISTS test;'
+    
+    - name: database initialize
+      # .env.ga を使っているため、試験用のDBをmigrateできる
+      run: |
+        cd ./laravel
+        php artisan migrate
+    
+    - name: Execute tests (route)
+      run: |
+        cd ./laravel
+        php artisan route:cache
+    
+    - name: Execute tests (Unit and Feature tests) via PHPUnit
+      # phpunit.xml で DB_CONNECTION を testing を使用しているので合わせる
+      # (ただし接続先情報は環境変数で上書きする)
+      env:
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_DATABASE: test
+        DB_USERNAME: root
+        DB_PASSWORD: root
+      run: |
+        cd ./laravel
+#        vendor/bin/phpunit
+
+    - name: Initialize remote access
+      env:
+        RELEASE_SERVER_KEYSTR:  ${{ secrets.UAT_SERVER_KEYSTR }}
+      run: |
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        echo "${RELEASE_SERVER_KEYSTR}" >> ~/.ssh/id_ecdsa
+        chmod 600 ~/.ssh/id_ecdsa
+    
+    - name: Release to UAT
+      env:
+        REMOTE_ADDR: 'uat.sample.com'
+        REMOTE_SSHP: 22
+        REMOTE_USER: 'ec2-user'
+      run: |
+        ssh -o 'StrictHostKeyChecking no' -p ${REMOTE_SSHP} -l ${REMOTE_USER} ${REMOTE_ADDR} "~/deploy.sh"
+
+    - name: view laravel.log
+      run: |
+        cd ./laravel
+        cat storage/logs/laravel.log
+      if: ${{ failure() }}

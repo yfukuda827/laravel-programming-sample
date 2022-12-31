@@ -1,0 +1,18 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+	// List of extensions which should be recommended for users of this workspace.
+	"recommendations": [
+		"ritwickdey.liveserver", // ステータスバーの `Go Live` をクリックすると、HTMLをサーバーにアップした形式で閲覧できる
+		"ms-vsliveshare.vsliveshare", // Live Share
+		"mhutchie.git-graph", // Git の更新グラフが表示できる
+		"eamodio.gitlens",    // ファイル上に Git の更新履歴が薄く表示される
+		"xdebug.php-debug",
+		"valeryanm.vscode-phpsab", //  PHPソースコードを見やすく整形してくれる。codesniffer & beautifier
+	],
+	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+	"unwantedRecommendations": [
+		
+	]
+}
