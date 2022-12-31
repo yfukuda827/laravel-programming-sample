@@ -4,12 +4,22 @@
 
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
-		"ritwickdey.liveserver", // ステータスバーの `Go Live` をクリックすると、HTMLをサーバーにアップした形式で閲覧できる
-		"ms-vsliveshare.vsliveshare", // Live Share
-		"mhutchie.git-graph", // Git の更新グラフが表示できる
-		"eamodio.gitlens",    // ファイル上に Git の更新履歴が薄く表示される
-		"xdebug.php-debug",
-		"valeryanm.vscode-phpsab", //  PHPソースコードを見やすく整形してくれる。codesniffer & beautifier
+		"ms-ceintl.vscode-language-pack-ja",	// VSCode 日本語パック
+		"ms-azuretools.vscode-docker",			// Docker for VSCode
+		"ecmel.vscode-html-css",				// HTML CSS Support
+		"yzane.markdown-pdf",					// Markdown を PDF でダウンロード
+		"bierner.markdown-mermaid",				// Mermaid markdown preview
+		"marp-team.marp-vscode",				// Marp for VSCode
+		"pkief.material-icon-theme",			// フォルダツリーが見やすくなる
+		"ritwickdey.liveserver",				// ステータスバーの `Go Live` をクリックすると、HTMLをサーバーにアップした形式で閲覧できる
+		"ms-vsliveshare.vsliveshare",			// Live Share
+		"mhutchie.git-graph",					// Git の更新グラフが表示できる
+		"eamodio.gitlens",						// ファイル上に Git の更新履歴が薄く表示される
+		"xdebug.php-debug",						// PHP Debug
+		"neilbrayfield.php-docblocker",			// PHP Docがバッと作成される
+		"valeryanm.vscode-phpsab",				// PHPソースコードを見やすく整形してくれる。codesniffer & beautifier
+		"adpyke.vscode-sql-formatter",			// SQLフォーマッター
+		"redhat.vscode-yaml",					// YAML 言語サポート
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [
