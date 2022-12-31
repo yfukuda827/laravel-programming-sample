@@ -19,7 +19,7 @@ class ProductFactory extends Factory
            'image_file_path' => 'images/aaa.jpg',
            'description' => $this->faker->realText(),
            'price' => $this->faker->randomNumber(4),
-           'stock' => $this->faker->randomNumber(2),
+           'stock' => 1,
            'product_category_id' => ProductCategory::inRandomOrder()->first()?->id,
         ];
     }
