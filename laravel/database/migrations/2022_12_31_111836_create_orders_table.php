@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('shipping_charge')->default(0)->comment('配送料');
             $table->unsignedInteger('total')->default(0)->comment('請求額');
             $table->enum('payment', ['bank', 'daibiki'])->comment('支払方法');
+            $table->string('name')->commnent('配送先 お名前');
             $table->string('postcode')->comment('配送先 郵便番号');
             $table->foreignId('prefecture_id')->constrained()->comment('配送先 都道府県ID');
             $table->string('address')->comment('配送先 住所（市区町村以下）');

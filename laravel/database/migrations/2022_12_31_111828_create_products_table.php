@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('商品名');
+            $table->string('subtitle')->comment('商品名の下のキャッチコピー');
             $table->string('image_file_path')->nullable()->comment('商品画像のファイルパス');
             $table->longText('description')->comment('商品説明');
             $table->unsignedInteger('price')->default(0)->comment('価格');
