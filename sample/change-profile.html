@@ -44,35 +44,18 @@
     <!-- Masthead-->
     <header class="masthead masthead-slim">
         <div class="container">
-            <div class="masthead-subheading">ご注文</div>
+            <div class="masthead-subheading">会員情報変更</div>
         </div>
     </header>
     <section class="page-section" id="terms">
         <div class="container">
-            <form action="order-confirm.html">
-                <!-- 会員登録していないひと -->
-                <!-- 会員登録している場合、パスワードとメールアドレスの表示をせず、profilesテーブルの情報がそのまま表示されます。 -->
-                <p>ご入力いただいた情報をもとに、会員登録されます。</p>
- 
-                <h2>会員情報</h2>
-                <div class="mb-3">
-                    <label for="input-name" class="form-label">お名前</label>
-                    <input type="text" name="RcyEjhgrjvQ9brh8aHQW" class="form-control" id="input-name" required>
-                </div>
-                 <div class="mb-3">
-                    <label for="input-password" class="form-label">パスワード</label>
-                    <input type="password" name="password" class="form-control" id="input-password" required>
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="もう一度パスワードをご入力ください" required>
-                </div>
-                <!-- この name はハニーポットです 入力されてはいけません -->
-                <input type="text" name="name" style="display:none;">
-                <div class="mb-3">
-                    <label for="input-email" class="form-label">メールアドレス</label>
-                    <input type="email" name="" class="form-control" id="input-email" aria-describedby="emailHelp" required>
-                    <div id="emailHelp" class="form-text">ご注文情報を送付いたします。</div>
-                </div>
+            <form action="change-profile-confirm.html">
                 <h2>発送先</h2>
                 <p>発送先の住所と連絡先をご入力ください。</p>
+                <div class="mb-3">
+                    <label for="input-name" class="form-label">お名前</label>
+                    <input type="text" name="name" class="form-control" id="input-name" required>
+                </div>
                 <div class="mb-3">
                     <label for="input-tel" class="form-label">お電話番号</label>
                     <input type="tel" name="tel" class="form-control" id="input-tel" aria-describedby="telHelp" required>
@@ -100,23 +83,9 @@
                     <label for="input-building" class="form-label">住所（建物名・部屋番号）</label>
                     <input type="text" name="building" class="form-control" id="input-building">
                 </div>
-                <h2>支払い</h2>
-                <div class="mb-3">
-                    <label for="input-payment" class="form-label">支払方法</label>
-                    <select id="input-payment" name="payment" class="form-select" required>
-                        <option selected>選択してください</option>
-                        <option value="bank">銀行振込</option>
-                        <option value="dabiki">代引き</option>
-                    </select>
-                </div>
-
+                
                 <br>
-                <div class="alert alert-success">
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="input-check">
-                        <label class="form-check-label" for="input-check"><a class="text-black" href="terms.html">利用規約</a>に同意する</label>
-                    </div>
-                </div>
+                <a href="mypage.html" class="btn btn-secondary">戻る</a>
                 <button type="submit" class="btn btn-primary">入力内容を確認する</button>
             </form>
         </div>

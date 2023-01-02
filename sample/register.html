@@ -44,16 +44,14 @@
     <!-- Masthead-->
     <header class="masthead masthead-slim">
         <div class="container">
-            <div class="masthead-subheading">ご注文</div>
+            <div class="masthead-subheading">会員登録</div>
         </div>
     </header>
     <section class="page-section" id="terms">
         <div class="container">
-            <form action="order-confirm.html">
-                <!-- 会員登録していないひと -->
-                <!-- 会員登録している場合、パスワードとメールアドレスの表示をせず、profilesテーブルの情報がそのまま表示されます。 -->
+            <form action="register-confirm.html">
                 <p>ご入力いただいた情報をもとに、会員登録されます。</p>
- 
+
                 <h2>会員情報</h2>
                 <div class="mb-3">
                     <label for="input-name" class="form-label">お名前</label>
@@ -100,16 +98,7 @@
                     <label for="input-building" class="form-label">住所（建物名・部屋番号）</label>
                     <input type="text" name="building" class="form-control" id="input-building">
                 </div>
-                <h2>支払い</h2>
-                <div class="mb-3">
-                    <label for="input-payment" class="form-label">支払方法</label>
-                    <select id="input-payment" name="payment" class="form-select" required>
-                        <option selected>選択してください</option>
-                        <option value="bank">銀行振込</option>
-                        <option value="dabiki">代引き</option>
-                    </select>
-                </div>
-
+                
                 <br>
                 <div class="alert alert-success">
                     <div class="mb-3 form-check">
