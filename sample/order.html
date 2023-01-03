@@ -47,7 +47,7 @@
             <div class="masthead-subheading">ご注文</div>
         </div>
     </header>
-    <section class="page-section" id="terms">
+    <section class="page-section">
         <div class="container">
             <form action="order-confirm.html">
                 <!-- 会員登録していないひと -->
@@ -105,11 +105,28 @@
                     <label for="input-payment" class="form-label">支払方法</label>
                     <select id="input-payment" name="payment" class="form-select" required>
                         <option selected>選択してください</option>
+                        <option value="credit">クレジットカード</option>
                         <option value="bank">銀行振込</option>
                         <option value="dabiki">代引き</option>
                     </select>
                 </div>
-
+                <!-- クレジットカードが選択された場合 -->
+                <div class="mb-3">
+                    <label for="input-cardno" class="form-label">カード番号</label>
+                    <input type="text" name="cardno" class="form-control" id="input-cardno" required>
+                </div>
+                <div class="mb-3">
+                    <label for="input-cardlimit" class="form-label">有効期限</label>
+                    <div class="input-group">
+                        <input type="text" name="cardlimit_month" class="form-control" placeholder="月 01" required>
+                        <span class="input-group-text">／</span>
+                        <input type="text" name="cardlimit_year" class="form-control" placeholder="年 22" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="input-cardcord" class="form-label">セキュリティコード</label>
+                    <input type="password" name="cardcord" class="form-control" id="input-cardcord" required>
+                </div>
                 <br>
                 <div class="alert alert-success">
                     <div class="mb-3 form-check">

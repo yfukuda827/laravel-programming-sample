@@ -20,23 +20,17 @@
 
 <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top adminNav" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="index.html#page-top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="index.html#services"></a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#portfolio">商品紹介</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#team">職人紹介</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#contact">お問い合わせ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html">会員登録</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.html">ログイン</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">ダッシュボード</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin-login.html">ログアウト</a></li>
                 </ul>
             </div>
         </div>
@@ -44,39 +38,24 @@
     <!-- Masthead-->
     <header class="masthead masthead-slim">
         <div class="container">
-            <div class="masthead-subheading">ご注文</div>
+            <div class="masthead-subheading">ログイン</div>
         </div>
     </header>
     <section class="page-section">
         <div class="container">
-            <form action="order-complete.html">
-                <h2>発送先</h2>
-                <div class="row">
-                    <div class="col-md-2">お名前</div>
-                    <div class="col-md-10">原田　和代</div>
+            <form action="admin-dashboard.html">
+                <h2>ログイン</h2>
+                <!-- この email はハニーポットです 入力されてはいけません -->
+                <input type="text" name="email" style="display:none;">
+                <div class="mb-3">
+                    <label for="input-email" class="form-label">メールアドレス</label>
+                    <input type="email" name="RsAcXhDsZw2bMbgMiwMo" class="form-control" id="input-email" aria-describedby="emailHelp" required>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">メールアドレス</div>
-                    <div class="col-md-10">info@redoit.tech</div>
+                <div class="mb-3">
+                    <label for="input-password" class="form-label">パスワード</label>
+                    <input type="password" name="password" class="form-control" id="input-password" required>
                 </div>
-                <div class="row">
-                    <div class="col-md-2">お電話番号</div>
-                    <div class="col-md-10">090-0000-0000</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">住所</div>
-                    <div class="col-md-10">111-1111 東京都大田区池上xx-xx-xx 丸八ビル902</div>
-                </div>
-                <br>
-                <h2>お支払い</h2>
-                <div class="row">
-                    <div class="col-md-2">支払方法</div>
-                    <div class="col-md-10">クレジットカード **90</div>
-                </div>
-                <br>
-                <br>
-                <button type="submit" class="btn btn-secondary">修正する</button>
-                <button type="submit" class="btn btn-primary">注文する</button>
+                <button type="submit" class="btn btn-success">ログイン</button>
             </form>
         </div>
     </section>
