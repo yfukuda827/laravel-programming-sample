@@ -15,6 +15,12 @@
 ### 開発環境 URL
 
 - [http://localhost:8000/](http://localhost:8000/) Web
+  - [利用者ログイン](http://localhost:8000/login)  
+    email: user_test@redoit.tech  
+    password: password  
+  - [管理者ログイン](http://localhost:8000/login/admin)  
+    email: admin_test@redoit.tech  
+    password: password  
 - [http://localhost:8880/](http://localhost:8880/) phpMyAdmin
 - [http://localhost:8025/](http://localhost:8025/) MailHog
 

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 
         if (config("app.env") !== "production") {
             // 本番環境以外で実行
+            $this->call(AdminSeeder::class);
             $this->call(UserSeeder::class);
             $this->call(ProfileSeeder::class);
             $this->call(ProductCategorySeeder::class);
