@@ -36,6 +36,7 @@ class OrderFactory extends Factory
             'shipping_charge' => $prefecture->shipping_charge,
             'total' => $total,
             'payment' => $this->faker->randomElement(['bank', 'daibiki']),
+            'name' => $user->name,
             'postcode' => $user->profile->postcode,
             'prefecture_id' => $user->profile->prefecture_id,
             'address' => $user->profile->address,
