@@ -52,18 +52,25 @@ class RegisterController extends Controller
      */
     public function show()
     {
-        return view('register.show');
+        return view('register.show')->with('prefectures', config('prefectures'));
     }
 
     public function confirm(RegisterUserRequest $request)
     {
-        return view('register.confirm', $request->validated());
+        $validated = $request->validated();
+        $validated['prefecture'] = config('prefectures.'.$validated['prefecture_id']);
+        return view('register.confirm', $validated);
     }
 
     public function complete(RegisterUserRequest $request)
     {
-        $validated = $request->validated();
+        $action = $request->get('action');
+        if($action == 'back') return redirect('/register')->withInput(); // 戻るボタン
 
+        $validated = $request->validated();
+        
+        // ハニーポットの回避
+        $validated['name'] = $validated['RcyEjhgrjvQ9brh8aHQW'];
         // パスワードをハッシュ化して登録
         $validated['password'] = Hash::make($validated['password']);
         $user = new User();
@@ -75,12 +82,12 @@ class RegisterController extends Controller
         $profile->fill($validated)->save();
 
         // 都道府県コードの設定
-        $profile->prefecture->name = config('prefecture.'.$profile->prefecture_id);
+        $prefecture = config('prefectures.'.$profile->prefecture_id);
 
         // メール送信
         $user->profile = $profile;
         Mail::to($user->email)
-            ->queue(new RegisterUserMail($user));
+            ->queue(new RegisterUserMail($user, $prefecture));
 
         return view('register.complete');
     }

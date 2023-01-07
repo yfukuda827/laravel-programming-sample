@@ -10,7 +10,7 @@
 お名前　{{ $user->name }}  
 メール　{{ $user->email }}
 電話番号　{{ $user->profile->tel }}
-住所　{{ $user->profile->postcode }} {{ $user->profile->prefecture->name }} {{ $user->profile->address }} {{ $user->profile->bulding }}
+住所　{{ $user->profile->postcode }} {{ $prefecture }} {{ $user->profile->address }} {{ $user->profile->building }}
 
 ---
 本メールにご返信いただけます。  

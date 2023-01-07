@@ -13,15 +13,17 @@ class RegisterUserMail extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $prefecture;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, string $prefecture)
     {
         $this->user = $user;
+        $this->prefecture = $prefecture;
     }
 
     /**
@@ -32,6 +34,7 @@ class RegisterUserMail extends Mailable
     public function build()
     {
         return $this->from(config('mail.from.address'), config('mail.from.name'))
-                    ->view('email.register');
+                    ->subject('会員登録ありがとうございます')
+                    ->text('email.register');
     }
 }
