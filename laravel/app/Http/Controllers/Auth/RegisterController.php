@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUserRequest;
+use App\Mail\RegisterUserMail;
+use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -41,6 +45,44 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
         $this->middleware('guest:admin');
+    }
+
+    /**
+     * 会員登録画面表示
+     */
+    public function show()
+    {
+        return view('register.show');
+    }
+
+    public function confirm(RegisterUserRequest $request)
+    {
+        return view('register.confirm', $request->validated());
+    }
+
+    public function complete(RegisterUserRequest $request)
+    {
+        $validated = $request->validated();
+
+        // パスワードをハッシュ化して登録
+        $validated['password'] = Hash::make($validated['password']);
+        $user = new User();
+        $user->fill($validated)->save();
+
+        // user_idを設定して登録
+        $validated['user_id'] = $user->id;
+        $profile = new Profile();
+        $profile->fill($validated)->save();
+
+        // 都道府県コードの設定
+        $profile->prefecture->name = config('prefecture.'.$profile->prefecture_id);
+
+        // メール送信
+        $user->profile = $profile;
+        Mail::to($user->email)
+            ->queue(new RegisterUserMail($user));
+
+        return view('register.complete');
     }
 
     /**

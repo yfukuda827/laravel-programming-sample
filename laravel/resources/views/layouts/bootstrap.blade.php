@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}" />
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/#top"><img src="assets/img/navbar-logo.svg" alt="..." /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/#services">３つの約束</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#portfolio">商品紹介</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#team">職人紹介</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#contact">お問い合わせ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">会員登録</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @yield('content')
+    <!-- Footer-->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 text-lg-start">Copyright &copy; Start Bootstrap 2022</div>
+                <div class="col-lg-2 my-3 my-lg-0">
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="col-lg-5 text-lg-end">
+                    <!--
+                    <a class="link-dark text-decoration-none me-3" href="/company">会社情報</a>
+                    <a class="link-dark text-decoration-none" href="/mailorder">特定商取引法に基づく表記</a>
+                    <a class="link-dark text-decoration-none me-3" href="/privacy">プライバシーポリシー</a>
+                    -->
+                    <a class="link-dark text-decoration-none" href="/terms">利用規約</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{{ asset('js/scripts.js') }}"></script>
+</body>
+</html>
