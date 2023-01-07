@@ -15,17 +15,31 @@ use App\Http\Middleware\TraceLog;
 */
 
 Route::middleware([TraceLog::class])->group(function() {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+    Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']);
+    Route::post('login/admin', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin']);
+
+    Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'show']);
+    Route::post('register/confirm', [App\Http\Controllers\Auth\RegisterController::class, 'confirm']);
+    Route::post('register/complete', [APp\Http\Controllers\Auth\RegisterController::class, 'complete']);
+
+    Route::get('order', [App\Http\Controllers\OrderController::class, 'show']);
+    Route::post('order/confirm', [\App\Http\Controllers\OrderController::class, 'confirm']);
+    Route::post('order/complete', [\App\Http\Controllers\OrderController::class, 'complete']);
+
+    Route::view('terms', 'pages.terms');
 });
 
-Auth::routes();
+Route::middleware([TraceLog::class, 'auth:web'])->prefix('mypage')->group(function() {
+    Route::get('', [App\Http\Controllers\UserController::class, 'mypage']);
+    Route::get('edit_password', [\App\Http\Controllers\UserController::class, 'showEditPassword']);
+    Route::post('edit_password/confirm', [\App\Http\Controllers\UserController::class, 'confirmEditPassword']);
+    Route::post('edit_password/complete', [\App\Http\Controllers\UserController::class, 'completeEditPassword']);
+}); 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']);
-
-Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin']);
-Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class, 'registerAdmin'])->name('admin-register');
-
-Route::view('/admin', 'admin')->middleware('auth:admin')->name('admin-home');
+Route::middleware([TraceLog::class, 'auth:admin'])->prefix('admin')->group(function() {
+    Route::get('/dashboard', [App\Http\Controllers\OrderController::class, 'adminIndex']);
+}); 
