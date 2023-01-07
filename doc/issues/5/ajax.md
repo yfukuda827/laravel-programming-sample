@@ -17,7 +17,7 @@ POST /postcode
     body 'postcode' = 1460082
 ```
 
-response  
+response json  
 
 ```txt
 'prefecture_id' => 13,
