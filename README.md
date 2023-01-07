@@ -1,6 +1,12 @@
 # Laravelプログラマー養成＆マナー講座用サンプルプロジェクト
 
-[株式会社RedoIT](https://redoit.tech)が開催する「Laravelプログラマー養成＆マナー講座」では、本プロジェクトを利用して開発を行っていく過程を学習していきます。
+[株式会社RedoIT](https://redoit.tech)が開催する「Laravelプログラマー養成＆マナー講座」では、本リポジトリを利用して開発を行っていく過程を学習していきます。
+
+## 作業の進め方
+
+- このリポジトリを[Fork](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)して、自分のところにコピーします。  
+- [issue一覧](./doc/ISSUES.md) に記載されている内容を１つずつ issue として登録していきましょう。画像もしっかり登録します。  
+- issueに記載された内容を、コーディングしていきます。issueには解説はありません。作業指示のみが記載されています。現実に合わせるため、内容はわかりやすかったりわかりにくかったりするでしょう。解説は、[Laravelプログラマー＆マナー講座](https://redoit.tech/laravel-programmer)にて解説しています。  
 
 ## 開発環境の作成方法
 

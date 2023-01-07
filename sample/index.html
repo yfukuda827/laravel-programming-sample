@@ -46,6 +46,14 @@
                 <a class="btn btn-primary btn-xl text-uppercase" href="#services">さらに詳しく</a>
             </div>
         </header>
+        <!-- お問い合わせ送付後に表示 sectionごと-->
+        <section class="page-section">
+            <div class="container">
+                <div class="alert alert-success" role="alert">
+                    お問い合わせを送信しました。
+                </div> 
+            </div>
+       </section>
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
@@ -323,7 +331,7 @@
                             <div class="form-group mb-md-0">
                                 <!-- Phone number input-->
                                 <input class="form-control" id="phone" type="tel" placeholder="電話番号 *" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">電話番号は必須です</div>
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">電話番号は必須です(ハイフンあり)</div>
                             </div>
                         </div>
                         <div class="col-md-6">
