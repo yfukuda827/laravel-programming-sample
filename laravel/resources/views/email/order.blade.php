@@ -16,7 +16,6 @@
 合計 {{ $order->total }}円
 
 ●発送先
-
 お名前　{{ $user->name }}  
 メール　{{ $user->email }}
 電話番号　{{ $user->profile->tel }}

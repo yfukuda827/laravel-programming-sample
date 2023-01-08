@@ -26,10 +26,10 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'ibTEcJ8uRTVsKCWrtW7R' => 'required|max:255', // name
-            'name' => 'present|size:0', // ハニーポット
-            'email' => 'required|email:rfc|unique:users',
-            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
+            'ibTEcJ8uRTVsKCWrtW7R' => 'sometimes|required|max:255', // name
+            'name' => 'sometimes|present|size:0', // ハニーポット
+            'email' => 'sometimes|required|email:rfc|unique:users',
+            'password' => ['sometimes', 'required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
             'tel' => 'required|numeric|digits_between:9,11',
             'postcode' => 'required|numeric|digits:7',
             'prefecture_id' => 'required|exists:prefectures,id',

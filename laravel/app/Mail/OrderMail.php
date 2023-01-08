@@ -26,10 +26,12 @@ class OrderMail extends Mailable
      * @param string $prefecture
      * @param string $payment
      */
-    public function __construct(User $user, Order $order)
+    public function __construct(User $user, Order $order, string $prefecture, string $payment)
     {
         $this->user = $user;
         $this->order = $order;
+        $this->prefecture = $prefecture;
+        $this->payment = $payment;
     }
 
     /**

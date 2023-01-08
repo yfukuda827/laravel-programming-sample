@@ -18,7 +18,7 @@
                 </ul>
             </div>
         @endif
-        <form action="/mypage/edit-password/complete?XDEBUG_TRIGGER=1" method="POST">
+        <form action="/mypage/edit-password/complete" method="POST">
             @csrf
             <h2>パスワード変更</h2>
             <div class="mb-3">
