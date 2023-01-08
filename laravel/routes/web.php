@@ -18,7 +18,7 @@ Route::middleware([TraceLog::class])->group(function() {
     Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
-    Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
     Route::get('login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']);
     Route::post('login/admin', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin']);
 
@@ -35,9 +35,8 @@ Route::middleware([TraceLog::class])->group(function() {
 
 Route::middleware([TraceLog::class, 'auth:web'])->prefix('mypage')->group(function() {
     Route::get('', [App\Http\Controllers\UserController::class, 'mypage']);
-    Route::get('edit_password', [\App\Http\Controllers\UserController::class, 'showEditPassword']);
-    Route::post('edit_password/confirm', [\App\Http\Controllers\UserController::class, 'confirmEditPassword']);
-    Route::post('edit_password/complete', [\App\Http\Controllers\UserController::class, 'completeEditPassword']);
+    Route::get('edit-password', [\App\Http\Controllers\UserController::class, 'showEditPassword']);
+    Route::post('edit-password/complete', [\App\Http\Controllers\UserController::class, 'completeEditPassword']);
 }); 
 
 Route::middleware([TraceLog::class, 'auth:admin'])->prefix('admin')->group(function() {
