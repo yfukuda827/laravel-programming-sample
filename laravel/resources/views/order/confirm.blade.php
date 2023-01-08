@@ -9,7 +9,7 @@
 </header>
 <section class="page-section">
     <div class="container">
-        <form action="/order/complete?XDEBUG_TRIGGER=1" method="POST">
+        <form action="/order/complete" method="POST">
             @csrf
             <h2>ご注文情報</h2>
             <div class="row">
