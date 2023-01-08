@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
 
 class OrderController extends Controller
 {
@@ -139,6 +140,10 @@ class OrderController extends Controller
         $user->profile = $profile;
         Mail::to($user->email)
              ->queue(new OrderMail($user, $order, $prefecture->name, $payment));
+
+        if(! auth()->user()) {
+            event(new Registered($user));
+        }
 
         return view('order.complete');
     }
