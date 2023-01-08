@@ -9,11 +9,13 @@
 </header>
 <section class="page-section">
     <div class="container">
-        <form action="/login" method="POST">
-                                    @csrf
+        @isset($authgroup)
+        <form method="POST" action="{{ url("login/$authgroup") }}">
+        @else
+        <form method="POST" action="{{ route('login') }}">
+        @endisset
+            @csrf
             <h2>ログイン</h2>
-            <!-- この email はハニーポットです 入力されてはいけません -->
-            <input type="text" name="email" style="display:none;">
             <div class="mb-3">
                 <label for="input-email" class="form-label">メールアドレス</label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

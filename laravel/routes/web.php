@@ -48,5 +48,5 @@ Route::middleware([TraceLog::class, 'auth:web'])->prefix('mypage')->group(functi
 }); 
 
 Route::middleware([TraceLog::class, 'auth:admin'])->prefix('admin')->group(function() {
-    Route::get('/dashboard', [App\Http\Controllers\OrderController::class, 'adminIndex']);
+    Route::get('/dashboard', [App\Http\Controllers\OrderController::class, 'index']);
 }); 
