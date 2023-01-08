@@ -55,7 +55,6 @@
             <div class="row">
                 <div class="col-md-2">メールアドレス</div>
                 <div class="col-md-10">{{ $email }}</div>
-                <input type="hidden" name="email" value="{{ $email }}">
             </div>
             <div class="row">
                 <div class="col-md-2">お電話番号</div>
@@ -79,8 +78,11 @@
             </div>
             <br>
             <br>
+            @if(!$user)
+            <input type="hidden" name="email" value="{{ $email }}">
             <input type="hidden" name="password" value="{{ $password }}">
             <input type="hidden" name="password_confirmation" value="{{ $password }}">
+            @endif
             <input type="hidden" name="kiyaku" value=1>
             <input type="hidden" name="product_id" value="{{ $product_id }}">
             <input type="hidden" name="orders" value="1">

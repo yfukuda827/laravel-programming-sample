@@ -18,8 +18,9 @@
                 </ul>
             </div>
         @endif
-        <form action="/order/confirm" method="POST">
+        <form action="/order/confirm?XDEBUG_TRIGGER=1" method="POST">
             @csrf
+            @if(!$user)
             <!-- 会員登録していないひと -->
             <!-- 会員登録している場合、パスワードとメールアドレスの表示をせず、profilesテーブルの情報がそのまま表示されます。 -->
             <p>ご入力いただいた情報をもとに、会員登録されます。</p>
@@ -40,6 +41,7 @@
                 <input type="email" name="email" class="form-control" id="input-email" aria-describedby="emailHelp" required value="{{ old('email') }}">
                 <div id="emailHelp" class="form-text">ご注文情報を送付いたします。</div>
             </div>
+            @endif
             <h2>発送先</h2>
             <p>発送先の住所と連絡先をご入力ください。</p>
             <div class="mb-3">
