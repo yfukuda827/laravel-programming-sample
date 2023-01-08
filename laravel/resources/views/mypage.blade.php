@@ -31,7 +31,7 @@
         <br>
         <h2>パスワード変更</h2>
         <br>
-        <a href="change-password.html" class="btn btn-secondary">変更する</a>
+        <a href="/edit-password" class="btn btn-secondary">変更する</a>
         <br>
         <br>
         <hr>
