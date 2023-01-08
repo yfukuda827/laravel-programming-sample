@@ -104,7 +104,7 @@ class RegisterController extends Controller
         // メール送信
         $user->profile = $profile;
         Mail::to($user->email)
-            ->queue(new RegisterUserMail($user, $prefecture));
+            ->queue(new RegisterUserMail($user, $prefecture->name));
 
         return view('register.complete');
     }
