@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\TraceLog;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use App\Http\Middleware\TraceLog;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Http\Request;
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/mypage')->with('message', 'メールアドレスを認証しました。');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::middleware([TraceLog::class])->group(function() {
     Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

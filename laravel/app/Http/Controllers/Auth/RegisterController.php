@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -105,6 +106,8 @@ class RegisterController extends Controller
         $user->profile = $profile;
         Mail::to($user->email)
             ->queue(new RegisterUserMail($user, $prefecture->name));
+
+        event(new Registered($user));
 
         return view('register.complete');
     }

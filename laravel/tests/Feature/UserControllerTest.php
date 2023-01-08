@@ -22,7 +22,7 @@ class UserControllerTest extends TestCase
     {
         $this->seed();
 
-        $user = User::find(1);
+        $user = User::where('email', 'user_test@redoit.tech')->first();
         $response = $this->actingAs($user)->get('/mypage');
         $response->assertStatus(200);
     }
@@ -36,7 +36,7 @@ class UserControllerTest extends TestCase
     {
         $this->seed();
 
-        $user = User::find(1);
+        $user = User::where('email', 'user_test@redoit.tech')->first();
         $response = $this->actingAs($user)->get('/mypage/edit-password');
         $response->assertStatus(200);
     }
@@ -50,7 +50,7 @@ class UserControllerTest extends TestCase
     {
         $this->seed();
 
-        $user = User::find(2);
+        $user = User::where('email', 'user_test2@redoit.tech')->first();
  
         // 実際にメールを送信しない
         Mail::fake();
