@@ -23,7 +23,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::with('prefecture')->orderBy('id', 'desc')->get();
+        return view('admin.order.index')->with('orders', $orders);
     }
 
     /**
