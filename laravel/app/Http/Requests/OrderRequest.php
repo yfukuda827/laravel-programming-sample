@@ -73,6 +73,7 @@ class OrderRequest extends FormRequest
             'kiyaku' => '利用規約に同意する',
             'product_id' => '商品',
             'orders' => '購入点数',
+            'payment' => '支払方法',
         ];
     }
 }
