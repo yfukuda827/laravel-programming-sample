@@ -31,9 +31,9 @@ class RegisterUserRequest extends FormRequest
             'name' => 'present|size:0', // ハニーポット
             'email' => 'required|email:rfc|unique:users',
             'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
-            'tel' => 'required|digits_between:9,11',
-            'postcode' => 'required|digits:7',
-            'prefecture_id' => 'required|integer|between:1,47',
+            'tel' => 'required|numeric|digits_between:9,11',
+            'postcode' => 'required|numeric|digits:7',
+            'prefecture_id' => 'required|exists:prefectures,id',
             'address' => 'required|max:255',
             'building' => 'max:255',
             'kiyaku' => 'required|accepted',
@@ -48,8 +48,7 @@ class RegisterUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'prefecture_id.integer' => '都道府県を選択してください',
-            'password.mixed' => 'パスワードは半角英字の大文字と小文字、半角数字を少なくとも1つずつ含める必要があります',
+            'password.mixed' => 'パスワードは半角英字の大文字と小文字、半角数字を少なくとも1つずつ含める必要があります。',
         ];
     }
 
