@@ -34,7 +34,6 @@
                     <li class="nav-item"><a class="nav-link" href="/#portfolio">商品紹介</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#team">職人紹介</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#contact">お問い合わせ</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">会員登録</a></li>
                     <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
                 </ul>
