@@ -26,7 +26,7 @@ Route::middleware([TraceLog::class])->group(function() {
     Route::post('register/confirm', [App\Http\Controllers\Auth\RegisterController::class, 'confirm']);
     Route::post('register/complete', [App\Http\Controllers\Auth\RegisterController::class, 'complete']);
 
-    Route::get('order', [App\Http\Controllers\OrderController::class, 'show']);
+    Route::get('order/{product}', [App\Http\Controllers\OrderController::class, 'show']);
     Route::post('order/confirm', [\App\Http\Controllers\OrderController::class, 'confirm']);
     Route::post('order/complete', [\App\Http\Controllers\OrderController::class, 'complete']);
 
