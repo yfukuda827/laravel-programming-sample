@@ -9,9 +9,11 @@
 </header>
 <section class="page-section">
     <div class="container">
+        @if(session('message'))
         <div class="alert alert-success" role="alert">
-            パスワードを変更しました。
+            {{ session('message') }}
         </div>
+        @endif
         <h2>発送先</h2>
         <div class="row">
             <div class="col-md-2">お名前</div>
@@ -31,7 +33,7 @@
         <br>
         <h2>パスワード変更</h2>
         <br>
-        <a href="/edit-password" class="btn btn-secondary">変更する</a>
+        <a href="/mypage/edit-password" class="btn btn-secondary">変更する</a>
         <br>
         <br>
         <hr>
