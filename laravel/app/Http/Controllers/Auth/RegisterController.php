@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
 use App\Mail\RegisterUserMail;
+use App\Models\Prefecture;
 use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -49,21 +50,44 @@ class RegisterController extends Controller
 
     /**
      * 会員登録画面表示
+     * 
+     * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        return view('register.show');
+        $prefectures = Prefecture::orderBy('id', 'asc')->get();
+        return view('register.show')->with('prefectures', $prefectures->pluck('name', 'id'));
     }
 
+    /**
+     * 会員登録　確認画面
+     *
+     * @param RegisterUserRequest $request
+     * @return \Illuminate\Http\Response
+     */
     public function confirm(RegisterUserRequest $request)
     {
-        return view('register.confirm', $request->validated());
+        $validated = $request->validated();
+        $prefecture = Prefecture::find($validated['prefecture_id']);
+        $validated['prefecture'] = $prefecture->name;
+        return view('register.confirm', $validated);
     }
 
+    /**
+     * 会員登録　完了画面
+     *
+     * @param RegisterUserRequest $request
+     * @return \Illuminate\Http\Response
+     */
     public function complete(RegisterUserRequest $request)
     {
-        $validated = $request->validated();
+        $action = $request->get('action');
+        if($action == 'back') return redirect('/register')->withInput(); // 戻るボタン
 
+        $validated = $request->validated();
+        
+        // ハニーポットの回避
+        $validated['name'] = $validated['RcyEjhgrjvQ9brh8aHQW'];
         // パスワードをハッシュ化して登録
         $validated['password'] = Hash::make($validated['password']);
         $user = new User();
@@ -75,12 +99,12 @@ class RegisterController extends Controller
         $profile->fill($validated)->save();
 
         // 都道府県コードの設定
-        $profile->prefecture->name = config('prefecture.'.$profile->prefecture_id);
-
+        $prefecture = Prefecture::find($validated['prefecture_id']);
+ 
         // メール送信
         $user->profile = $profile;
         Mail::to($user->email)
-            ->queue(new RegisterUserMail($user));
+            ->queue(new RegisterUserMail($user, $prefecture));
 
         return view('register.complete');
     }
@@ -113,53 +137,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    /**
-     * 管理者ログイン用
-     */
-    protected function adminValidator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-    public function showAdminRegisterForm()
-    {
-        return view('auth.register', ['authgroup' => 'admin']);
-    }
-
-    public function registerAdmin(Request $request)
-    {
-        $this->adminValidator($request->all())->validate();
-
-        event(new Registered($user = $this->createAdmin($request->all())));
-
-        Auth::guard('admin')->login($user);
-
-        if ($response = $this->registeredAdmin($request, $user)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-                    ? new JsonResponse([], 201)
-                    : redirect(route('admin-home'));
-    }
-
-    protected function createAdmin(array $data)
-    {
-        return Admin::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
-
-    protected function registeredAdmin(Request $request, $user)
-    {
-        //
     }
 }
