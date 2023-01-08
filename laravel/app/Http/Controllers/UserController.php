@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Prefecture;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -81,5 +84,18 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function mypage()
+    {
+        $user = auth()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+        $prefecture = Prefecture::find($profile->prefecture_id);
+        $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+        return view('mypage')
+                ->with('user', $user)
+                ->with('prefecture', $prefecture->name)
+                ->with('profile', $profile)
+                ->with('orders', $orders);
     }
 }
