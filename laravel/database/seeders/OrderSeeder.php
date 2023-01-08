@@ -14,6 +14,9 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
+        Order::factory()->count(2)->create([
+            'user_id' => 1,
+        ]);
         Order::factory()->count(20)->create();
     }
 }

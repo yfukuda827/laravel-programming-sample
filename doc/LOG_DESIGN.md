@@ -66,3 +66,8 @@ $schedule->command('emails:send')
 ```
 
 公式 [タスクスケジュール](https://readouble.com/laravel/8.x/ja/scheduling.html)
+
+## すでに設定済みのログ出力
+
+- HTTPアクセスした場合の、アクセスログが設定されています。
+- Eloquentを利用してデータベースにアクセスした場合の、queryログが設定されています。

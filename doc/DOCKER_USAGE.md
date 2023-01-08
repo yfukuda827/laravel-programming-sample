@@ -69,15 +69,10 @@ $ exit
 ```sh
 > cd THIS_REPOSITORY_DIR
 > docker-compose up -d
-> docker exec -it sample-laravel php artisan test
-```
-
-もしくは
-
-```sh
-> cd THIS_REPOSITORY_DIR
-> docker-compose up -d
 > docker exec -it sample-laravel bash
+$ php artisan cache:clear
+$ php artisan config:cache --env=testing
+$ php artisan migrate:fresh --env=testing
 $ php artisan test
 ```
 

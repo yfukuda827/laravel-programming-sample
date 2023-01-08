@@ -16,7 +16,8 @@ class ProductFactory extends Factory
     {
         return [
            'name' => '商品'.$this->faker->randomNumber(3),
-           'image_file_path' => 'images/aaa.jpg',
+           'subtitle' => $this->faker->sentence(),
+           'image_file_path' => 'assets/img/portfolio/'.$this->faker->numberBetween(1,6).'.jpg',
            'description' => $this->faker->realText(),
            'price' => $this->faker->randomNumber(4),
            'stock' => 1,

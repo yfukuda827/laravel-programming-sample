@@ -2,6 +2,11 @@
 
 [株式会社RedoIT](https://redoit.tech)が開催する「Laravelプログラマー養成＆マナー講座」では、本リポジトリを利用して開発を行っていく過程を学習していきます。
 
+## 一番最初の状態
+
+このシステムは、簡単なECサイトになっています。  
+構築済み機能の一覧は[こちら](./doc/PRECONSTRUCTED_FUNCTIONS.md)  
+
 ## 作業の進め方
 
 - このリポジトリを[Fork](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks)して、自分のところにコピーします。  
@@ -15,6 +20,12 @@
 ### 開発環境 URL
 
 - [http://localhost:8000/](http://localhost:8000/) Web
+  - [利用者ログイン](http://localhost:8000/login)  
+    email: user_test@redoit.tech  
+    password: password  
+  - [管理者ログイン](http://localhost:8000/login/admin)  
+    email: admin_test@redoit.tech  
+    password: password  
 - [http://localhost:8880/](http://localhost:8880/) phpMyAdmin
 - [http://localhost:8025/](http://localhost:8025/) MailHog
 
