@@ -26,4 +26,14 @@ class HomeController extends Controller
         $products = Product::with('product_category')->orderBy('id', 'desc')->limit(6)->get();
         return view('home')->with('products', $products);
     }
+
+    /**
+     * Company 会社情報表示
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function company()
+    {
+        return view('pages.company');
+    }
 }

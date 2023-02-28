@@ -22,6 +22,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/mypage')->with('message', 'メールアドレスを認証しました。');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+Route::get('company', [App\Http\Controllers\HomeController::class, 'company'])->name('company');
+
 Route::middleware([TraceLog::class])->group(function() {
     Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');

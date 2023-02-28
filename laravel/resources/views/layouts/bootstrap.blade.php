@@ -33,8 +33,8 @@
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <div class="col-lg-5 text-lg-end">
-                    <!--
                     <a class="link-dark text-decoration-none me-3" href="/company">会社情報</a>
+                    <!--
                     <a class="link-dark text-decoration-none" href="/mailorder">特定商取引法に基づく表記</a>
                     <a class="link-dark text-decoration-none me-3" href="/privacy">プライバシーポリシー</a>
                     -->
