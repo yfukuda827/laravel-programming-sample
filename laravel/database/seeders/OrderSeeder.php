@@ -21,6 +21,10 @@ class OrderSeeder extends Seeder
         Order::factory()->count(2)->create([
             'user_id' => User::where('email', 'user_test2@redoit.tech')->first()->id,
         ]);
+        Order::factory()->count(3)->create([
+            'user_id' => User::where('email', 'test2@redoit.tech')->first()->id,
+            'payment' => 'bank'
+        ]);
         Order::factory()->count(20)->create();
     }
 }

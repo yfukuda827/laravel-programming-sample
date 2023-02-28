@@ -24,6 +24,11 @@ class UserSeeder extends Seeder
             'name' => 'テストサンプル',
             'password' => Hash::make('123abcABC'),
         ]);
+        User::factory()->create([
+            'email' => 'test2@redoit.tech',
+            'name' => '試験花子',
+            'password' => Hash::make('password'),
+        ]);
 
         User::factory()->count(50)->create();
     }
