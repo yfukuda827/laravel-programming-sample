@@ -15,16 +15,19 @@ class DatabaseSeeder extends Seeder
     {
         // 本番環境でも実行
         $this->call(PrefectureSeeder::class);
-        $this->call(PostcodeSeeder::class);
 
         if (config("app.env") !== "production") {
             // 本番環境以外で実行
+            $this->call(PostcodeSeeder::class);
             $this->call(AdminSeeder::class);
             $this->call(UserSeeder::class);
             $this->call(ProfileSeeder::class);
             $this->call(ProductCategorySeeder::class);
             $this->call(ProductSeeder::class);
             $this->call(OrderSeeder::class);
+        } else {
+            $this->call(PostcodeFullSeeder::class);
         }
+
     }
 }
