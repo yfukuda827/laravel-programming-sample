@@ -31,6 +31,7 @@ Route::middleware([TraceLog::class])->group(function() {
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
     Route::get('login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']);
     Route::post('login/admin', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin']);
+    Route::post('postcode', [App\Http\Controllers\HomeController::class, 'postcode']);
 
     Route::get('register', [App\Http\Controllers\Auth\RegisterController::class, 'show']);
     Route::post('register/confirm', [App\Http\Controllers\Auth\RegisterController::class, 'confirm']);

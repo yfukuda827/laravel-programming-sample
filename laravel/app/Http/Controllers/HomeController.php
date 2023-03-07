@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Postcode;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -35,5 +36,23 @@ class HomeController extends Controller
     public function company()
     {
         return view('pages.company');
+    }
+
+    /**
+     * 郵便番号から住所を返却
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return json 
+     */
+    public function postcode(Request $request) {
+        $inPostcode = $request->input('postcode');
+        $postcode = Postcode::where('postcode', $inPostcode)->first(); 
+        if(empty($postcode)) {
+            abort(404);
+        }
+        return response()->json([
+            'prefecture_id' => $postcode->prefecture_id,
+            'address' => $postcode->address,
+        ]);
     }
 }

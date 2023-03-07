@@ -54,6 +54,27 @@
                 <input type="text" name="postcode" class="form-control" id="input-postcode" aria-decribeby="postcodeHelp" required value="{{ old('postcode') }}">
                 <div id="postcodeHelp" class="form-text">ハイフンなし７桁でご入力ください。</div>
             </div>
+            <script>
+                $(function() {
+                    $('#input-postcode').change(function() {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/postcode',
+                            data: {
+                                'postcode': $(this).val()
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            }
+                        }).done(function( data ) {
+                            $('#input-prefecture').val(data['prefecture_id']);
+                            $('#input-address').val(data['address']);
+                        }).fail(function(){
+                            console.log('fail');
+                        });
+                    });
+                });
+                </script>
             <div class="mb-3">
                 <label for="input-prefecture" class="form-label">都道府県 <spacn class="text-danger">*必須</span></label>
                 <select id="input-prefecture" name="prefecture_id" class="form-select" required>
