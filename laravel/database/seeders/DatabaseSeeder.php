@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // 本番環境でも実行
         $this->call(PrefectureSeeder::class);
+        $this->call(PostcodeSeeder::class);
 
         if (config("app.env") !== "production") {
             // 本番環境以外で実行
