@@ -34,10 +34,8 @@
                 </div>
                 <div class="col-lg-5 text-lg-end">
                     <a class="link-dark text-decoration-none me-3" href="/company">会社情報</a>
-                    <!--
                     <a class="link-dark text-decoration-none" href="/mailorder">特定商取引法に基づく表記</a>
                     <a class="link-dark text-decoration-none me-3" href="/privacy">プライバシーポリシー</a>
-                    -->
                     <a class="link-dark text-decoration-none" href="/terms">利用規約</a>
                 </div>
             </div>
