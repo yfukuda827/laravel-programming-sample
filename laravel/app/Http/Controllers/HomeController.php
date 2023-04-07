@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostcodeRequest;
 use App\Models\Postcode;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return json 
      */
-    public function postcode(Request $request) {
+    public function postcode(PostcodeRequest $request) {
         $inPostcode = $request->input('postcode');
         $postcode = Postcode::where('postcode', $inPostcode)->first(); 
         if(empty($postcode)) {
